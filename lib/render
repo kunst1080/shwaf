@@ -1,0 +1,10 @@
+#!/bin/sh
+
+status=$1
+content=$2
+html=$3
+
+cat lib/status/${status}
+cat lib/contenttype/${content}
+echo ""
+printf "cat <<++EOF\n`cat app/html/${html}` \n++EOF\n" | sh

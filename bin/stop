@@ -1,0 +1,7 @@
+#!/bin/sh
+cd `dirname $0`/..
+
+if [ -r tmp/RUNNING_PID ] ; then
+    kill -9 `cat tmp/RUNNING_PID`
+    rm tmp/RUNNING_PID
+fi
