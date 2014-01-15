@@ -1,0 +1,33 @@
+#!/usr/local/bin/bash
+
+LISTEN_PORT=8080
+
+function server() {
+    # request
+    IFS=' '
+    read -u ${FD} "method" "path" "protocol"
+    # header
+    #  TODO:後で実装。awk使ったほうがいいかも。
+    declare -A HEADERS
+    HEADERS[Host]="ServerName"
+    
+    ./router.sh "${method}" "${path}"
+
+    # status
+    if [ $? -eq 0 ] ; then
+        echo "${HEADERS[Host]};`date`; ${method}; ${path}" >&2
+    else
+        echo "process failed : ${HEADERS[Host]};`date`; ${method}; ${path}" >&2
+    fi
+    unset HEADERS
+}
+
+PIPE_FILE=tmp/server.$$
+if [ ! -e "${PIPE_FILE}" ];
+then
+    mkfifo "${PIPE_FILE}"
+fi
+exec {FD}<>"${PIPE_FILE}"
+trap "test -e ${PIPE_FILE} && rm -f ${PIPE_FILE};exit" 0 HUP INT QUIT
+
+server | nc -l ${LISTEN_PORT} >&${FD}

@@ -1,0 +1,16 @@
+#!/bin/sh
+cd `dirname $0`/..
+
+logfile=log/log.txt
+
+if [ -r $logfile ]; then
+    rm $logfile
+fi
+if [ -r "tmp/server.*" ]; then
+    rm tmp/server.*
+fi
+
+echo $$
+echo $$>tmp/RUNNING_PID
+
+exec sh -c 'while true; do bin/listen; done' > $logfile 2>&1
