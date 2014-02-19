@@ -1,7 +1,0 @@
-ServerName;2014年 1月16日 木曜日 02時41分37秒 JST; GET; /
-ServerName;2014年 1月16日 木曜日 02時41分39秒 JST; GET; /
-ServerName;2014年 1月16日 木曜日 02時41分50秒 JST; GET; /
-ServerName;2014年 1月16日 木曜日 02時41分59秒 JST; GET; /
-ServerName;2014年 1月16日 木曜日 02時44分32秒 JST; GET; /
-ServerName;2014年 1月16日 木曜日 02時48分07秒 JST; GET; /
-ServerName;2014年 1月16日 木曜日 02時51分50秒 JST; GET; /
